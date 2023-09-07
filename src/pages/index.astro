@@ -2,7 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import Card from "../components/Card.astro";
 import SearchWidget from "../components/SearchWidget.astro";
-
+import { Image } from 'astro:assets';
+import imageSome from '../../src/assets/img/some-pic.jpg';
 ---
 
 <script>
@@ -14,6 +15,14 @@ import SearchWidget from "../components/SearchWidget.astro";
 
 <Layout title="Welcome to Astro." description="my page description">
   <main>
+    <div>
+      <h3>Image from https:</h3>
+      <Image src="https://picsum.photos/200/300" alt="A bird." width="300" height="200"/>
+    </div>
+    <div>
+      <h3>image from src folder</h3>
+      <Image src={imageSome} alt="A bird." width="300" height="200"/>
+    </div>
     <SearchWidget/>
     <svg
       class="astro-a"
