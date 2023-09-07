@@ -10,8 +10,8 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/mdx": "^0.19.7",
-    "astro": "^2.10.12",
+    "@astrojs/mdx": "^1.0.2",
+    "astro": "^3.0.10",
     "isomorphic-dompurify": "^1.8.0",
     "sass": "^1.66.1"
   }

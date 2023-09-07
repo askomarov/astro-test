@@ -1,10 +1,31 @@
 ---
 import Layout from "../layouts/Layout.astro"
+import { slide } from 'astro:transitions';
+const anim = {
+  old: {
+    name: 'fadeIn',
+    duration: '0.2s',
+    easing: 'linear',
+    fillMode: 'forwards',
+  },
+  new: {
+    name: 'fadeOut',
+    duration: '0.3s',
+    easing: 'linear',
+    fillMode: 'backwards',
+  }
+};
+
+const myFade = {
+  forwards: anim,
+  backwards: anim,
+};
 ---
 
 <Layout  title="Blog | page">
   <a href="/">Main page</a>
-  <h1>blog page <span>special word</span></h1>
+  <h1 transition:animate={slide({ duration: '0.4s' })}>blog page <span>special word</span></h1>
+  <h2 transition:animate={myFade}>Title h2 with custom animation</h2>
 </Layout>
 <style lang="scss">
   h1{

@@ -5,16 +5,18 @@ interface Props {
 }
 
 const { title, description } = Astro.props.frontmatter || Astro.props;
+import { ViewTransitions } from 'astro:transitions';
 ---
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" transition:animate="none">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<title>{title}</title>
 		<meta name="description" content={description}>
+		<ViewTransitions />
 	</head>
 	<body>
 		<ul>
@@ -26,6 +28,9 @@ const { title, description } = Astro.props.frontmatter || Astro.props;
 			</li>
 			<li>
 				<a href="/about">About</a>
+			</li>
+			<li>
+				<a href="/blog">blog</a>
 			</li>
 		</ul>
 		<slot />
