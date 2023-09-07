@@ -4,20 +4,26 @@ import Card from "../components/Card.astro";
 import SearchWidget from "../components/SearchWidget.astro";
 import { Image } from 'astro:assets';
 import imageSome from '../../src/assets/img/some-pic.jpg';
+import { fade } from 'astro:transitions';
 ---
 
 <script>
-  const btn = document.querySelector(".my-btn");
-  btn?.addEventListener("click", () => {
-    btn.classList.toggle("btn-red");
+  document.addEventListener('astro:page-load', ()=>{
+    const btn = document.querySelector(".my-btn");
+    const initButton = () =>{
+      btn?.addEventListener("click", () => {
+        btn.classList.toggle("btn-red");
+      });
+    }
+    initButton()
   });
 </script>
 
 <Layout title="Welcome to Astro." description="my page description">
   <main>
-    <div>
+    <div transition:animate={fade({delay: '0s', duration: '1s'})}>
       <h3>Image from https:</h3>
-      <Image src="https://picsum.photos/200/300" alt="A bird." width="300" height="200"/>
+      <Image class="my-img" src="https://picsum.photos/200/300" alt="A bird." width="300" height="200"/>
     </div>
     <div>
       <h3>image from src folder</h3>
@@ -146,5 +152,9 @@ import imageSome from '../../src/assets/img/some-pic.jpg';
   }
   .btn-red {
     background: tomato;
+  }
+  .my-img{
+    object-fit: cover;
+    object-position: center;
   }
 </style>
