@@ -1,0 +1,39 @@
+<script>
+import DOMPurify from 'isomorphic-dompurify';
+
+  const form: HTMLFormElement | null = document.querySelector(".form");
+  form?.addEventListener("submit", (evt) => {
+    evt.preventDefault();
+    const formData = new FormData(form);
+    const searchTerm = DOMPurify.sanitize(formData.get("search")?.toString());
+    if (!searchTerm || searchTerm.length === 0) return;
+    const url = new URL("/search", window.location.origin);
+    url.searchParams.set("q", searchTerm);
+    window.location.assign(url.toString());
+  });
+</script>
+<div>
+  <form class="form">
+    <div>
+      <label for="search">Search the blog</label>
+      <span>Eanter a seacrh</span>
+    </div>
+    <input
+      type="search"
+      name="search"
+      id="search"
+      required
+      placeholder="Enter a search"
+    />
+  </form>
+</div>
+<style>
+  .form {
+    display: grid;
+    gap: 1rem;
+  }
+  input {
+    display: block;
+    width: 100%;
+  }
+</style>
